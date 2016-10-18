@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="app" class="no-js">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Random Number Generator</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/css/app.css">
+</head>
+
+<body>
+
+	<div ng-controller="RNController" align="center" class="container">
+		<table class="table">
+			<tr>
+				<td class="success">
+					<button class="btn btn-success" type="button"
+						ng-click="generateRandomNumber()" >Generate Random Number</button>
+				</td>
+				<td class="success"><b>{{newRandomNumber}}</b></td>
+			</tr>
+		</table>
+
+		<br> <br> <br>
+
+		<table class="table-bordered" ng-if="randomList.sortedList.length>0">
+
+			<thead>
+				<tr class="success" bgcolor="#ccffcc" >
+					<td><strong>Random Number</strong></td>
+					<td><strong>Number of Swaps</strong></td>
+					<td><strong>Swap duration(nanosec)</strong></td>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td>
+						<table class="table">
+							<tr ng-repeat="random in randomList.sortedList">
+							<!-- 	<td>{{$index +1}}</td> -->
+								<td>{{random}}</td>
+								
+							</tr>
+						</table>
+					</td>
+					<td>{{randomList.swapNumber}}</td>
+					<td>{{randomList.sortDuration}}</td>
+				</tr>
+			</tbody>
+
+		</table>
+
+		<br>
+		<br>
+
+			<table class="table">
+			<tr>
+				<td class="success">
+					<button class="btn btn-success" type="button"
+						ng-click=displaySortHistory() >View Sorting history</button>
+				</td>
+			</tr>
+		</table>
+		
+		<br>
+		<br>
+
+		<table class="table-bordered" ng-if="randomHistory.length>0">
+			<thead>
+				<tr class="success" bgcolor="#ccffcc" >
+					<td><strong>#</strong></td>
+					<td><strong>Random Number</strong></td>
+					<td><strong>Number of Swaps</strong></td>
+					<td><strong>Swap duration(nanosec)</strong></td>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr ng-repeat="randomObj in randomHistory">
+				<td>{{$index +1}}</td>
+					<td>
+						<table class="table">
+							<tr ng-repeat="random in randomObj.sortedList">
+								<td>{{random}}</td>
+							</tr>
+						</table>
+					</td>
+					<td>{{randomObj.swapNumber}}</td>
+					<td>{{randomObj.sortDuration}}</td>
+				</tr>
+			</tbody>
+			
+		</table>
+		
+	</div>
+	<br>
+	
+
+	<script src="/webjars/angularjs/1.4.9/angular.js"></script>
+	<script src="/webjars/angularjs/1.4.9/angular-resource.js"></script>
+	<script src="/webjars/angularjs/1.4.9/angular-route.js"></script>
+	<script src="/js/app.js"></script>
+
+	<link rel="stylesheet"
+		href="/webjars/bootstrap/3.3.6/css/bootstrap.css">
+</body>
+</html>
